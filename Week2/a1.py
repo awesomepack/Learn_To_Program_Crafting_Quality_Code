@@ -44,10 +44,11 @@ def stock_price_summary(price_changes):
     >>> stock_price_summary([-.09])
     (0,-.09)
     """
-    pos = [price for price in price_changes >= 0]
-    neg = [price for price in price_changes < 0]
+  # Group values of the same sign into lists
+    pos = [price for price in price_changes if price >= 0]
+    neg = [price for price in price_changes if price < 0]
 
-    return (sum(pos) , sum(neg))
+    return ( sum(pos) , sum(neg) )
 
 
     
@@ -65,6 +66,12 @@ def swap_k(L, k):
     >>> nums
     [5, 6, 3, 4, 1, 2]
     """
+
+    L_F = [L[x] for x in range(-k , 0)]
+    F_L = [L[x] for x in range(0 , k)]
+    m = L[k:-k]
+
+    return L_F + m + F_L
 
 
 if __name__ == '__main__':
